@@ -11,7 +11,7 @@ def solution(name):
         while tmp < len(name) and name[tmp] == 'A':
             tmp += 1
             
-        min_cursor = min(min_cursor, 2*i + len(name) - tmp)
+        min_cursor = min(min_cursor, 2*i + len(name) - tmp, i + 2*(len(name)-tmp))
             
     return answer + min_cursor
 
