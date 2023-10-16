@@ -5,21 +5,27 @@ def solution(priorities, location):
     length = len(priorities) - 1
     queue = deque(priorities)
     index = 0
+    outindex = []
     
     while queue:
         if index > length:
             index = 0
+        
+        while index in outindex:
+            index += 1
             
         priority = queue.popleft()     
         
-        if priority < max(queue):
-            queue.append(priority)
-            index += 1
-        elif index == location:
-            answer += 1
-            return answer
-        else:
-            answer += 1
-            index += 1
+        if index <= length:
+            if queue and priority < max(queue):
+                queue.append(priority)
+                index += 1
+            elif index == location:
+                answer += 1
+                return answer
+            else:
+                answer += 1
+                outindex.append(index)
+                index += 1
 
-solution([1, 1, 9, 1, 1, 1], 0)
+solution([1, 2, 3, 4, 3, 2, 1], 0)
