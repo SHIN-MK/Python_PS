@@ -1,21 +1,22 @@
 from collections import deque
 
+
 def solution(priorities, location):
     answer = 0
     length = len(priorities) - 1
     queue = deque(priorities)
     index = 0
     outindex = []
-    
+
     while queue:
         if index > length:
             index = 0
-        
+
         while index in outindex:
             index += 1
-            
-        priority = queue.popleft()     
-        
+
+        priority = queue.popleft()
+
         if index <= length:
             if queue and priority < max(queue):
                 queue.append(priority)
@@ -28,4 +29,5 @@ def solution(priorities, location):
                 outindex.append(index)
                 index += 1
 
-solution([1, 2, 3, 4, 3, 2, 1], 0)
+
+solution([2, 1, 3, 2], 0)
